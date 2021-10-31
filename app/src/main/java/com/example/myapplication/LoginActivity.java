@@ -12,17 +12,26 @@ public class LoginActivity extends AppCompatActivity {
     Button btnLogin;
     EditText userName;
     EditText password;
+    EditText email;
+
+    public LoginActivity(){}
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        btnLogin=(Button)findViewById(R.id.btnLogin);
-        userName=(EditText)findViewById(R.id.edtUsername);
-        password=(EditText)findViewById(R.id.edtPassword);
+        btnLogin = findViewById(R.id.btnLogin);
+        userName = findViewById(R.id.edtUsername);
+        password = findViewById(R.id.editPassword);
+        email = findViewById(R.id.editTextTextEmailAddress2);
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                validate(userName.getText().toString(),password.getText().toString());
+                String result = validate(userName.getText().toString(),password.getText().toString(),email.getText().toString());
+                if(!validate_email(email.getText().toString())){
+                    email.setError("Wrong email format");
+                }
+                Toast.makeText(getApplicationContext(), result, Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -30,11 +39,17 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    public String validate(String userName, String password)
-    {
-        if(userName.equals("admin") && password.equals("admin"))
+    public String validate(String userName, String password, String email) {
+        boolean result = false;
+        result = validate_email(email);
+        if(userName.equals("admin") && password.equals("admin") && result)
             return "Login was successful";
         else
             return "Invalid login!";
+    }
+
+    private boolean validate_email(String e){
+        String pattern = "^[a-zA-Z0-9][\\w.-]*[a-zA-Z0-9]@[a-zA-Z0-9][\\w.-]*[a-zA-Z0-9]\\.[a-zA-Z][a-zA-Z.]*[a-zA-Z]$";
+        return e.matches(pattern);
     }
 }
