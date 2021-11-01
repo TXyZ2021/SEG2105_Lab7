@@ -26,11 +26,11 @@ public class LoginUnitTest {
         LoginActivity myObjectUnderTest = new LoginActivity(mMockContext);
 
         // Test with a valid email address
-        String result0 = myObjectUnderTest.validate("admin","admin", "test@test.com");
+        String result0 = myObjectUnderTest.validate("test@test.com","admin");
         assertThat(result0, is(FAKE_STRING_SUCCESS));
 
         // Test with an invalid email address
-        String result1 = myObjectUnderTest.validate("admin","admin","test@eee");
+        String result1 = myObjectUnderTest.validate("te4st@eee","admin");
         assertThat(result1, is(FAKE_STRING_FAILED));
     }
 }

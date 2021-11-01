@@ -23,11 +23,10 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin = findViewById(R.id.btnLogin);
         userName = findViewById(R.id.edtUsername);
         password = findViewById(R.id.editPassword);
-        email = findViewById(R.id.editTextTextEmailAddress2);
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String result = validate(userName.getText().toString(),password.getText().toString(),email.getText().toString());
+                String result = validate(userName.getText().toString(),password.getText().toString());
                 if(!validate_email(email.getText().toString())){
                     email.setError("Wrong email format");
                 }
@@ -39,9 +38,9 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    public String validate(String userName, String password, String email) {
-        boolean result = validate_email(email);
-        if(userName.equals("admin") && password.equals("admin") && result)
+    public String validate(String userName, String password) {
+        boolean result = validate_email(userName);
+        if(password.equals("admin") && result)
             return "Login was successful";
         else
             return "Invalid login!";
