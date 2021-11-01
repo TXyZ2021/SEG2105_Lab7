@@ -40,8 +40,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public String validate(String userName, String password, String email) {
-        boolean result = false;
-        result = validate_email(email);
+        boolean result = validate_email(email);
         if(userName.equals("admin") && password.equals("admin") && result)
             return "Login was successful";
         else
