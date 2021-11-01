@@ -29,7 +29,7 @@ public class LoginUnitTest {
         String result0 = myObjectUnderTest.validate("admin","admin", "test@test.com");
         assertThat(result0, is(FAKE_STRING_SUCCESS));
 
-        // ...Test with an invalid email address
+        // Test with an invalid email address
         String result1 = myObjectUnderTest.validate("admin","admin","test@eee");
         assertThat(result1, is(FAKE_STRING_FAILED));
     }
